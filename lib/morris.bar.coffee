@@ -191,6 +191,7 @@ class Morris.Bar extends Morris.Grid
           null
 
     @flat_bars = $.map @bars, (n) -> return n
+    @flat_bars = $.grep @flat_bars, (n) -> return n?
     @bar_els = $($.map @flat_bars, (n) -> return n[0])
 
   # @private
