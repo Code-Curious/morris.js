@@ -74,6 +74,8 @@ class Morris.Bar extends Morris.Grid
       else
         label = @drawYAxisLabel(basePos, row._x - 0.5 * @options.gridTextSize, row.label)
 
+      if @options.barClass?
+        label.node.setAttribute('class', @options.barClass(row, undefined, 'axislabel'))
 
       if not @options.horizontal
         angle = @options.xLabelAngle
@@ -173,12 +175,16 @@ class Morris.Bar extends Morris.Grid
           top -= lastTop if @options.stacked
           if not @options.horizontal
             lastTop += size
-            @drawBar(left, top, barWidth, size, @colorFor(row, sidx, 'bar'),
+            bar = @drawBar(left, top, barWidth, size, @colorFor(row, sidx, 'bar'),
                 @options.barOpacity, @options.barRadius)
           else
             lastTop -= size
-            @drawBar(top, left, size, barWidth, @colorFor(row, sidx, 'bar'),
+            bar = @drawBar(top, left, size, barWidth, @colorFor(row, sidx, 'bar'),
                 @options.barOpacity, @options.barRadius)
+
+          if @options.barClass?
+            bar.node.setAttribute('class', @options.barClass(row, sidx, 'bar'))
+          bar
 
 
         else
