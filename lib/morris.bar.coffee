@@ -186,10 +186,6 @@ class Morris.Bar extends Morris.Grid
             bar = @drawBar(top, left, size, barWidth, @colorFor(row, sidx, 'bar'),
                 @options.barOpacity, @options.barRadius)
 
-          if @options.barClass?
-            bar.node.setAttribute('class', @options.barClass(row, sidx, 'bar'))
-          bar
-
             if @options.inBarValue and
                 barWidth > @options.gridTextSize + 2*@options.inBarValueMinTopMargin
               barMiddle = left + 0.5 * barWidth
@@ -199,6 +195,11 @@ class Morris.Bar extends Morris.Grid
                 .attr('font-weight', @options.gridTextWeight)
                 .attr('fill', @options.inBarValueTextColor)
                 .attr('text-anchor', 'end')
+
+          if @options.barClass?
+            bar.node.setAttribute('class', @options.barClass(row, sidx, 'bar'))
+          bar
+
 
         else
           null
