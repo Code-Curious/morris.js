@@ -31,6 +31,10 @@ class Morris.Bar extends Morris.Grid
     xLabelMargin: 50
     horizontal: false
     shown: true
+    inBarValue: false
+    inBarValueTextColor: 'white'
+    inBarValueMinTopMargin: 1
+    inBarValueRightMargin: 4
 
   # Do any size-related calculations
   #
@@ -186,6 +190,15 @@ class Morris.Bar extends Morris.Grid
             bar.node.setAttribute('class', @options.barClass(row, sidx, 'bar'))
           bar
 
+            if @options.inBarValue and
+                barWidth > @options.gridTextSize + 2*@options.inBarValueMinTopMargin
+              barMiddle = left + 0.5 * barWidth
+              @raphael.text(bottom - @options.inBarValueRightMargin, barMiddle, @yLabelFormat(row.y[sidx], sidx))
+                .attr('font-size', @options.gridTextSize)
+                .attr('font-family', @options.gridTextFamily)
+                .attr('font-weight', @options.gridTextWeight)
+                .attr('fill', @options.inBarValueTextColor)
+                .attr('text-anchor', 'end')
 
         else
           null
