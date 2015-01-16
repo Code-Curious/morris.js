@@ -37,7 +37,8 @@ module.exports = function (grunt) {
         ],
         dest: 'build/morris.coffee'
       },
-      'build/spec.coffee': ['spec/support/**/*.coffee', 'spec/lib/**/*.coffee']
+      'build/spec.coffee': ['spec/support/**/*.coffee', 'spec/lib/**/*.coffee'],
+      '/home/jelte/work/nexus2/src/js/global/morris.js': ['morris.js']
     },
     less: {
       all: {
@@ -69,7 +70,7 @@ module.exports = function (grunt) {
       },
       dev: {
         files:  'lib/*.coffee' ,
-        tasks: ['concat:build/morris.coffee', 'coffee:lib']
+        tasks: ['concat:build/morris.coffee', 'coffee:lib', 'concat:/home/jelte/work/nexus2/src/js/global/morris.js']
       }
     },
     shell: {
